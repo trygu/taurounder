@@ -25,7 +25,14 @@
 
 //#include "WrapCRP.h"
 
-class __declspec(dllexport) RounderCtrl
+/* Portable export macro (was __declspec(dllexport), Windows-only). */
+#if defined(_WIN32) || defined(__CYGWIN__)
+    #define ROUNDER_EXPORT __declspec(dllexport)
+#else
+    #define ROUNDER_EXPORT __attribute__((visibility("default")))
+#endif
+
+class ROUNDER_EXPORT RounderCtrl
 //class RounderCtrl
 {
 private:
