@@ -2,9 +2,9 @@
 # rounding) engine from a single RounderCtrl::DoRound() call.
 #
 # It links against the CRP shared library (native/crp), which is built against
-# the open-source HiGHS solver. The historical SWIG JNI wrapper
-# (RounderCtrl_wrap) is intentionally excluded; bindings to the new stack are
-# generated with pybind11 instead of SWIG.
+# the open-source HiGHS solver. The legacy SWIG JNI wrapper (RounderCtrl_wrap)
+# has been removed; bindings to the new stack are generated with pybind11
+# (see python/cpp/bind_rounder.cpp in the top-level repo).
 
 cmake_minimum_required(VERSION 3.16)
 
