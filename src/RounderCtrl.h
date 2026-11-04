@@ -26,7 +26,9 @@
 //#include "WrapCRP.h"
 
 /* Portable export macro (was __declspec(dllexport), Windows-only). */
-#if defined(_WIN32) || defined(__CYGWIN__)
+#if defined(TAUARGUS_STATIC)
+    #define ROUNDER_EXPORT
+#elif defined(_WIN32) || defined(__CYGWIN__)
     #define ROUNDER_EXPORT __declspec(dllexport)
 #else
     #define ROUNDER_EXPORT __attribute__((visibility("default")))

@@ -33,7 +33,7 @@
 // Private functions
 ///////////////////////////////////////////////////////////////////////
 
-RCallback* m_Callback = NULL;
+static RCallback* m_Callback = NULL;
 static RProgressListener* m_ProgressListener = NULL;
 
 void RounderCtrl::SetDoubleConstant(const int variable, double value)

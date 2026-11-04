@@ -19,8 +19,12 @@ if(WIN32)
     list(APPEND ROUNDER_SRC src/Versioninfo.rc)
 endif()
 
-add_library(tauargus_rounder SHARED ${ROUNDER_SRC})
+option(BUILD_SHARED_LIBS "Build shared native libraries" ON)
+add_library(tauargus_rounder ${ROUNDER_SRC})
 add_library(tauargus::rounder ALIAS tauargus_rounder)
+if(NOT BUILD_SHARED_LIBS)
+    target_compile_definitions(tauargus_rounder PUBLIC TAUARGUS_STATIC)
+endif()
 
 target_include_directories(tauargus_rounder
     PUBLIC
