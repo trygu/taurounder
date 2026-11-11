@@ -21,6 +21,7 @@
 #include "RProgressListener.h"
 #include "RCallback.h"
 #include <iostream>
+#include <string>
 #include <time.h>
 
 //#include "WrapCRP.h"
