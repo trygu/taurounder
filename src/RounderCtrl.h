@@ -21,6 +21,7 @@
 #include "RProgressListener.h"
 #include "RCallback.h"
 #include <iostream>
+#include <string>
 #include <time.h>
 
 //#include "WrapCRP.h"
@@ -63,6 +64,7 @@ public:
                  double *MaxJump, long *NumberJump, double *UsedTime, long *ErrorCode);
     
     std::string GetVersion();
+    std::string GetErrorString(int ErrorNumber);
 };
 
 #endif	/* ROUNDERCTRL_H */
