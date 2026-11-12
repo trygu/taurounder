@@ -81,7 +81,11 @@ int RounderCtrl::DoRound(char *Solver, char *InFileName, double Base, double *Up
 }
 
 std::string RounderCtrl::GetVersion(){
+#ifdef TAUARGUS_ENGINE_VERSION
+    return TAUARGUS_ENGINE_VERSION;
+#else
     return ROUNDERVERSION;
+#endif
 }
 std::string RounderCtrl::GetErrorString(int ErrorNumber)
 {
