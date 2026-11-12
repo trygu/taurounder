@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <string>
 #include <time.h>
 #include <math.h>
 #define JJZERO          101
@@ -80,5 +81,29 @@ int RounderCtrl::DoRound(char *Solver, char *InFileName, double Base, double *Up
 }
 
 std::string RounderCtrl::GetVersion(){
+#ifdef TAUARGUS_ENGINE_VERSION
+    return TAUARGUS_ENGINE_VERSION;
+#else
     return ROUNDERVERSION;
+#endif
 }
+std::string RounderCtrl::GetErrorString(int ErrorNumber)
+{
+    // CRP ErrorTypes (WrapCRP.h), 7100-7110. A code outside the catalog
+    // answers the same fallback the core and hitas use.
+    switch (ErrorNumber) {
+        case NOLICENSE:          return "CRP: no license";
+        case NOINPUTFILE:        return "CRP: input file not found";
+        case NOJJFORMAT:         return "CRP: no JJ-format";
+        case NOLOADPROBLEM:      return "CRP: could not load problem";
+        case NOSOLVEDPROBLEM:    return "CRP: no solved problem";
+        case INFEASIBLEPROBLEM:  return "CRP: problem is infeasible";
+        case NOAUDITING:         return "CRP: no auditing";
+        case NOPRINTING:         return "CRP: no printing";
+        case NOFREEPROBLEM:      return "CRP: could not free problem";
+        case NOCLOSELICENSE:     return "CRP: could not close license";
+        case NOOUTPUTFILE:       return "CRP: output file not found";
+    }
+    return "UnKnown Error (" + std::to_string(ErrorNumber) + ")";
+}
+

@@ -22,6 +22,14 @@ endif()
 option(BUILD_SHARED_LIBS "Build shared native libraries" ON)
 add_library(tauargus_rounder ${ROUNDER_SRC})
 add_library(tauargus::rounder ALIAS tauargus_rounder)
+
+# The train version. The superbuild injects it from engine/ENGINE-VERSION;
+# a standalone module build falls back to ROUNDERVERSION in resource.h.
+if(NOT DEFINED TAUARGUS_ENGINE_VERSION)
+    set(TAUARGUS_ENGINE_VERSION "2.1.0.1")
+endif()
+target_compile_definitions(tauargus_rounder PRIVATE
+    TAUARGUS_ENGINE_VERSION="${TAUARGUS_ENGINE_VERSION}")
 if(NOT BUILD_SHARED_LIBS)
     target_compile_definitions(tauargus_rounder PUBLIC TAUARGUS_STATIC)
 endif()
